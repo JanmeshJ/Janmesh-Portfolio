@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Mail, Linkedin, Github, MapPin, ExternalLink, Calendar, Award, ArrowDown, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Phone, Download, Sparkles, Rocket, Zap, Target, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+// import {Phone, ArrowDown}
+// import React, {useRef} from 'react';
+import { Mail, Linkedin, Github, MapPin, ExternalLink, Calendar, Award, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Download, Sparkles, Rocket, Zap, Target, Menu, X } from 'lucide-react';
 import profilePhoto from './profile.png';
 
 export default function Portfolio() {
