@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import {Phone, ArrowDown}
-// import React, {useRef} from 'react';
-import { Mail, Linkedin, Github, MapPin, ExternalLink, Calendar, Award, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Download, Sparkles, Rocket, Zap, Target, Menu, X } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, ExternalLink, Calendar, Award, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Phone, Download, Sparkles, Rocket, Zap, Target, Menu, X, Sun, Moon } from 'lucide-react';
 import profilePhoto from './profile.png';
 
 export default function Portfolio() {
@@ -10,6 +8,7 @@ export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +62,7 @@ export default function Portfolio() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80;
+      const offset = 100; // Reduced offset for less empty space
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -181,11 +180,11 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50'} relative overflow-hidden transition-colors duration-500`}>
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div 
-          className="absolute w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
+          className={`absolute w-96 h-96 ${darkMode ? 'bg-gradient-to-r from-blue-600/30 to-purple-600/30' : 'bg-gradient-to-r from-blue-400/20 to-purple-400/20'} rounded-full blur-3xl transition-colors duration-500`}
           style={{
             top: '10%',
             left: '10%',
@@ -193,7 +192,7 @@ export default function Portfolio() {
           }}
         />
         <div 
-          className="absolute w-96 h-96 bg-gradient-to-r from-pink-400/20 to-orange-400/20 rounded-full blur-3xl"
+          className={`absolute w-96 h-96 ${darkMode ? 'bg-gradient-to-r from-pink-600/30 to-orange-600/30' : 'bg-gradient-to-r from-pink-400/20 to-orange-400/20'} rounded-full blur-3xl transition-colors duration-500`}
           style={{
             bottom: '10%',
             right: '10%',
@@ -201,7 +200,7 @@ export default function Portfolio() {
           }}
         />
         <div 
-          className="absolute w-72 h-72 bg-gradient-to-r from-green-400/20 to-cyan-400/20 rounded-full blur-3xl"
+          className={`absolute w-72 h-72 ${darkMode ? 'bg-gradient-to-r from-green-600/30 to-cyan-600/30' : 'bg-gradient-to-r from-green-400/20 to-cyan-400/20'} rounded-full blur-3xl transition-colors duration-500`}
           style={{
             top: '50%',
             left: '50%',
@@ -211,7 +210,7 @@ export default function Portfolio() {
       </div>
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-white/30 backdrop-blur-sm z-50">
+      <div className={`fixed top-0 left-0 w-full h-1 ${darkMode ? 'bg-slate-800/50' : 'bg-white/30'} backdrop-blur-sm z-50 transition-colors duration-500`}>
         <div 
           className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 shadow-lg shadow-blue-500/50"
           style={{ width: `${scrollProgress}%` }}
@@ -219,7 +218,7 @@ export default function Portfolio() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-xl border-b border-gray-200/50 z-40 mt-1 shadow-sm">
+      <header className={`fixed top-0 left-0 right-0 ${darkMode ? 'bg-slate-900/70 border-slate-700/50' : 'bg-white/70 border-gray-200/50'} backdrop-blur-xl border-b z-40 mt-1 shadow-sm transition-colors duration-500`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <nav className="flex items-center justify-between">
             <button onClick={() => scrollToSection('about')} className="flex items-center space-x-3 group cursor-pointer">
@@ -229,102 +228,132 @@ export default function Portfolio() {
                   <span className="text-white font-bold text-lg">JJ</span>
                 </div>
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden sm:block">
+              <span className={`text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden sm:block`}>
                 Janmesh Joshi
               </span>
             </button>
             
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-1 bg-white/50 backdrop-blur-sm rounded-full px-2 py-2 shadow-sm">
-              {[
-                { id: 'about', label: 'About' },
-                { id: 'skills', label: 'Skills' },
-                { id: 'experience', label: 'Experience' },
-                { id: 'education', label: 'Education' },
-                { id: 'projects', label: 'Projects' },
-                { id: 'contact', label: 'Contact' }
-              ].map((item) => (
+            <div className="flex items-center space-x-4">
+              {/* Desktop Menu */}
+              <div className={`hidden md:flex items-center space-x-1 ${darkMode ? 'bg-slate-800/50' : 'bg-white/50'} backdrop-blur-sm rounded-full px-2 py-2 shadow-sm`}>
+                {[
+                  { id: 'about', label: 'About' },
+                  { id: 'skills', label: 'Skills' },
+                  { id: 'experience', label: 'Experience' },
+                  { id: 'education', label: 'Education' },
+                  { id: 'projects', label: 'Projects' },
+                  { id: 'contact', label: 'Contact' }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      activeSection === item.id
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30'
+                        : darkMode 
+                          ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' 
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Dark Mode Toggle - Desktop (far right) */}
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={`hidden md:flex w-10 h-10 rounded-lg ${darkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-white/50 border-gray-200/50'} backdrop-blur-sm border items-center justify-center hover:scale-110 transition-all duration-300`}
+              >
+                {darkMode ? (
+                  <Sun className="text-yellow-400" size={20} />
+                ) : (
+                  <Moon className="text-indigo-600" size={20} />
+                )}
+              </button>
+
+              {/* Mobile: Dark Mode Toggle + Hamburger */}
+              <div className="md:hidden flex items-center space-x-2">
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
-                  }`}
+                  onClick={() => setDarkMode(!darkMode)}
+                  className={`w-10 h-10 rounded-lg ${darkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-white/50 border-gray-200/50'} backdrop-blur-sm border flex items-center justify-center hover:scale-110 transition-all duration-300`}
                 >
-                  {item.label}
+                  {darkMode ? (
+                    <Sun className="text-yellow-400" size={20} />
+                  ) : (
+                    <Moon className="text-indigo-600" size={20} />
+                  )}
                 </button>
-              ))}
+
+                {/* Mobile Menu Button */}
+                <button 
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className={`p-2 rounded-lg ${darkMode ? 'bg-slate-800/50' : 'bg-white/50'} backdrop-blur-sm`}
+                >
+                  {mobileMenuOpen ? <X size={24} className={darkMode ? 'text-white' : 'text-gray-900'} /> : <Menu size={24} className={darkMode ? 'text-white' : 'text-gray-900'} />}
+                </button>
+              </div>
             </div>
+          </nav>
+        </div>
 
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-white/50 backdrop-blur-sm"
+        
+      </header>
+      {/* Mobile Menu Backdrop */}
+        {mobileMenuOpen && (
+          <div 
+            className="md:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-[9998] flex items-center justify-center px-4"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {/* Mobile Menu */}
+            <div 
+              className={`${darkMode ? 'bg-slate-800/98 border-slate-700/50' : 'bg-white/98 border-gray-200/50'} backdrop-blur-xl border rounded-3xl shadow-2xl w-full max-w-sm relative`}
+              onClick={(e) => e.stopPropagation()}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-                      </nav>
-                      
+              {/* Close button */}
+              <button 
+                onClick={() => setMobileMenuOpen(false)}
+                className={`absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg ${darkMode ? 'hover:bg-slate-700' : 'hover:bg-gray-100'} transition-colors`}
+              >
+                <X size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
+              </button>
 
-                    </div>
-                  </header>
-      {/* Backdrop */}
-{mobileMenuOpen && (
-  <div
-    onClick={() => setMobileMenuOpen(false)}
-    className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
-  />
-)}
+              {/* Title */}
+              <div className={`px-6 py-5 ${darkMode ? 'border-slate-700' : 'border-gray-200'} border-b`}>
+                <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-white'}`}>My Life</h3>
+              </div>
 
-{/* Compact Sliding Drawer */}
-<div
-  className={`fixed top-0 right-0 h-auto mt-20 mr-4 w-[280px] rounded-2xl border border-white/20
-              bg-white/80 backdrop-blur-2xl shadow-2xl shadow-purple-500/20
-              transform transition-transform duration-500 ease-in-out md:hidden z-50
-              ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-[120%]'}`}
->
-  <div className="flex items-center justify-between px-5 py-4 border-b border-white/20">
-    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-      My Life
-    </span>
-    <button
-      onClick={() => setMobileMenuOpen(false)}
-      className="p-1.5 rounded-lg bg-white/60 hover:bg-white/80 transition"
-    >
-      <X size={20} className="text-gray-700" />
-    </button>
-  </div>
-
-  <div className="flex flex-col p-3 space-y-1">
-    {['about', 'skills', 'experience', 'education', 'projects', 'contact'].map((section) => (
-      <button
-        key={section}
-        onClick={() => {
-          scrollToSection(section);
-          setMobileMenuOpen(false);
-        }}
-        className={`text-left px-4 py-2 rounded-xl font-medium text-sm capitalize 
-                    transition-all duration-200 ${
-          activeSection === section
-            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-            : 'text-gray-700 hover:bg-white/70 hover:text-purple-600'
-        }`}
-      >
-        {section}
-      </button>
-    ))}
-  </div>
-</div>
-
+              {/* Menu Items */}
+              <div className="px-4 py-5 space-y-2">
+                {['about', 'skills', 'experience', 'education', 'projects', 'contact'].map((section) => (
+                  <button
+                    key={section}
+                    onClick={() => {
+                      scrollToSection(section);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`block w-full text-left px-5 py-3.5 rounded-xl font-medium transition-all ${
+                      activeSection === section
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                        : darkMode
+                          ? 'text-white hover:bg-slate-700/70'
+                          : 'text-white hover:bg-gray-100'
+                    }`}
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
       {/* Hero/About Section */}
       <section id="about" className="min-h-screen flex items-center justify-center pt-32 pb-20 px-6 relative">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="space-y-12">
-            {/* Top section with photo and name */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-100 md:gap-40">
+          <div className="space-y-16">
+            {/* Top section with photo and name side by side */}
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-12 md:gap-36">
               {/* Photo */}
               <div className="relative group flex-shrink-0">
                 {/* Glow effect */}
@@ -334,53 +363,57 @@ export default function Portfolio() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-75 blur-sm animate-spin-slow"></div>
                 
                 {/* Main container */}
-                <div className="relative w-48 h-48 md:w-56 md:h-56 bg-gradient-to-br from-white to-gray-50 rounded-3xl flex items-center justify-center border-4 border-white shadow-2xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                  <img src={profilePhoto} alt="Janmesh Joshi" className="w-full h-full object-cover" style={{ objectPosition: 'center 80%' }}/>
-                  <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                <div className="relative w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-white to-gray-50 rounded-3xl flex items-center justify-center border-4 border-white shadow-2xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                  <img 
+                    src={profilePhoto} 
+                    alt="Janmesh Joshi" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
-              {/* Name and title */}
-              <div className="space-y-6 text-center pt-6">
-                <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200 shadow-sm">
-                  <Sparkles className="text-indigo-600" size={18} />
-                  <span className="text-indigo-600 font-semibold text-sm">Learning Everyday</span>
+              {/* Name and title section */}
+              <div className="space-y-8 text-center md:text-left flex-1 max-w-3xl">
+                {/* Badge */}
+                <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-5 py-2.5 rounded-full border shadow-sm`}>
+                  <Sparkles className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={20} />
+                  <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-base`}>Learning Everyday</span>
                 </div>
 
-                <div className="space-y-4 text-center">
-                  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                    <span className="text-gray-900">Hi, I'm</span>
+                <div className="space-y-6">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+                    <span className={darkMode ? 'text-white' : 'text-gray-900'}>Hi, I'm</span>
                     <br />
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
                       Janmesh Joshi
                     </span>
                   </h1>
-                  <div className="flex items-center space-x-3 justify-center md:justify-center">
-                    {/* <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div> */}
-                    <p className="text-3xl font-light bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> AI/ML Engineer</p>
+                  <div className="flex items-center space-x-3 justify-center md:justify-start">
+                    <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                    <p className={`text-2xl md:text-4xl ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-light`}>AI/ML Engineer</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Description and content */}
-            <div className="space-y-8">
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
+            <div className="space-y-12 text-center md:text-left">
+              <p className={`text-xl md:text-2xl ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed max-w-5xl mx-auto md:mx-0`}>
                 Crafting intelligent systems with <span className="font-semibold text-blue-600">2+ years</span> of experience in scalable ML solutions and distributed systems. Currently pursuing MSc in <span className="font-semibold text-purple-600">Human-Centered AI</span>.
               </p>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto md:mx-0 pt-8">
                 {stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/50 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 group">
-                    <stat.icon className="text-indigo-600 mb-2 group-hover:scale-110 transition-transform" size={24} />
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-sm text-gray-600">{stat.label}</p>
+                  <div key={idx} className={`${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-6 border hover:border-indigo-300 hover:shadow-lg transition-all duration-300 group`}>
+                    <stat.icon className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} mb-3 group-hover:scale-110 transition-transform`} size={28} />
+                    <p className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>{stat.value}</p>
+                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start pt-6">
                 <button
                   onClick={() => scrollToSection('projects')}
                   className="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 overflow-hidden"
@@ -393,13 +426,13 @@ export default function Portfolio() {
                 </button>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="bg-white/60 backdrop-blur-sm border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:bg-white hover:border-indigo-300 hover:shadow-lg transition-all duration-300"
+                  className={`${darkMode ? 'bg-slate-800/60 border-slate-700 text-gray-300' : 'bg-white/60 border-gray-300 text-gray-700'} backdrop-blur-sm border-2 px-8 py-4 rounded-xl font-semibold hover:bg-white hover:border-indigo-300 hover:shadow-lg transition-all duration-300`}
                 >
                   Get in Touch
                 </button>
               </div>
 
-              <div className="flex items-center space-x-5">
+              <div className="flex items-center space-x-5 justify-center md:justify-start pt-4">
                 {[
                   { icon: Mail, href: 'mailto:janmesh5900@gmail.com', label: 'Email' },
                   { icon: Linkedin, href: 'https://linkedin.com/in/janmeshjoshi/', label: 'LinkedIn' },
@@ -410,9 +443,9 @@ export default function Portfolio() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative w-12 h-12 bg-white/60 backdrop-blur-sm rounded-xl flex items-center justify-center border border-gray-200/50 hover:border-indigo-300 hover:shadow-lg transition-all duration-300"
+                    className={`group relative w-12 h-12 ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-xl flex items-center justify-center border hover:border-indigo-300 hover:shadow-lg transition-all duration-300`}
                   >
-                    <social.icon className="text-gray-600 group-hover:text-indigo-600 transition-colors" size={22} />
+                    <social.icon className={`${darkMode ? 'text-gray-400 group-hover:text-purple-400' : 'text-gray-600 group-hover:text-indigo-600'} transition-colors`} size={22} />
                   </a>
                 ))}
               </div>
@@ -422,33 +455,33 @@ export default function Portfolio() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-2 bg-gray-400 rounded-full animate-scroll"></div>
+          <div className={`w-6 h-10 border-2 ${darkMode ? 'border-gray-600' : 'border-gray-400'} rounded-full flex items-start justify-center p-2`}>
+            <div className={`w-1.5 h-2 ${darkMode ? 'bg-gray-600' : 'bg-gray-400'} rounded-full animate-scroll`}></div>
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="pt-6 pb-24 md:pt-24 md:pb-28 px-6 relative">
+      <section id="skills" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200">
-              <Zap className="text-indigo-600" size={18} />
-              <span className="text-indigo-600 font-semibold text-sm">Technical Expertise</span>
+            <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
+              <Zap className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Technical Expertise</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Skills & Technologies
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
               A comprehensive toolkit for building intelligent systems
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {/* Machine Learning & AI */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -456,13 +489,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Brain className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Machine Learning & AI</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Machine Learning & AI</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['TensorFlow', 'PyTorch', 'Scikit-learn', 'NLP', 'Computer Vision', 'Deep Learning'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-purple-50 hover:bg-purple-100 border border-purple-200 hover:border-purple-400 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-purple-500/20 border-purple-500/50 text-purple-300' : 'bg-purple-50 border-purple-200 text-purple-700'} hover:bg-purple-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-purple-400' : 'bg-purple-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -471,7 +504,7 @@ export default function Portfolio() {
             </div>
 
             {/* Programming Languages */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-blue-400 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-blue-400 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -479,13 +512,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Code2 className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Programming</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Programming</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['Python', 'JavaScript', 'C++', 'SQL', 'Git', 'REST APIs'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 hover:border-blue-400 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-blue-500/20 border-blue-500/50 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'} hover:bg-blue-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-blue-400' : 'bg-blue-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -494,7 +527,7 @@ export default function Portfolio() {
             </div>
 
             {/* Cloud & DevOps */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -502,13 +535,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Cloud className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Cloud & DevOps</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Cloud & DevOps</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['AWS', 'Azure', 'Docker', 'EC2', 'S3', 'SageMaker', 'CI/CD'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-orange-50 hover:bg-orange-100 border border-orange-200 hover:border-orange-400 text-orange-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-orange-500/20 border-orange-500/50 text-orange-300' : 'bg-orange-50 border-orange-200 text-orange-700'} hover:bg-orange-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-orange-400' : 'bg-orange-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -517,7 +550,7 @@ export default function Portfolio() {
             </div>
 
             {/* Data Engineering */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-green-400 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-green-400 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -525,13 +558,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Database className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Data Engineering</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Data Engineering</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['Pandas', 'NumPy', 'ETL Pipelines', 'PostgreSQL', 'MySQL'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-green-50 hover:bg-green-100 border border-green-200 hover:border-green-400 text-green-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-green-500/20 border-green-500/50 text-green-300' : 'bg-green-50 border-green-200 text-green-700'} hover:bg-green-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-green-400' : 'bg-green-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -540,7 +573,7 @@ export default function Portfolio() {
             </div>
 
             {/* Tools & Technologies */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-pink-400 hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-pink-400 hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -548,13 +581,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Terminal className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Tools & Technologies</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Tools & Technologies</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['Flask', 'Jupyter', 'VS Code', 'Linux', 'Postman', 'Git'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:border-pink-400 text-pink-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-pink-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-pink-500/20 border-pink-500/50 text-pink-300' : 'bg-pink-50 border-pink-200 text-pink-700'} hover:bg-pink-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-pink-400' : 'bg-pink-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -563,7 +596,7 @@ export default function Portfolio() {
             </div>
 
             {/* Distributed Systems */}
-            <div className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 overflow-hidden">
+            <div className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative space-y-6">
@@ -571,13 +604,13 @@ export default function Portfolio() {
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
                     <Zap className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Distributed Systems</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Distributed Systems</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {['HPC Workloads', 'Fault Tolerance', 'Scalability', 'Monitoring'].map((skill, i) => (
-                    <span key={i} className="inline-flex items-center space-x-2 bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 hover:border-cyan-400 text-cyan-700 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default">
-                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full"></div>
+                    <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300' : 'bg-cyan-50 border-cyan-200 text-cyan-700'} hover:bg-cyan-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
+                      <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-cyan-400' : 'bg-cyan-500'} rounded-full`}></div>
                       <span>{skill}</span>
                     </span>
                   ))}
@@ -597,13 +630,13 @@ export default function Portfolio() {
               {certifications.map((cert, idx) => (
                 <div 
                   key={idx} 
-                  className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 text-center overflow-hidden"
+                  className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-indigo-300 hover:shadow-xl transition-all duration-300 text-center overflow-hidden`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative">
                     <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">{cert.icon}</div>
-                    <h4 className="font-bold text-gray-900 mb-2">{cert.name}</h4>
-                    <p className="text-sm text-indigo-600 font-medium">{cert.issuer}</p>
+                    <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>{cert.name}</h4>
+                    <p className={`text-sm ${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-medium`}>{cert.issuer}</p>
                   </div>
                 </div>
               ))}
@@ -613,12 +646,12 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-6 px-6 relative bg-white/30 backdrop-blur-sm">
+      <section id="experience" className={`py-32 px-6 relative ${darkMode ? 'bg-slate-900/30' : 'bg-white/30'} backdrop-blur-sm`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200">
-              <Briefcase className="text-indigo-600" size={18} />
-              <span className="text-indigo-600 font-semibold text-sm">Career Journey</span>
+            <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
+              <Briefcase className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Career Journey</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -627,10 +660,10 @@ export default function Portfolio() {
             </h2>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {experience.map((exp, idx) => (
               <div key={idx} className="relative">
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-gray-200/50 hover:border-indigo-300 hover:shadow-2xl transition-all duration-500 overflow-hidden group">
+                <div className={`${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 md:p-10 border hover:border-indigo-300 hover:shadow-2xl transition-all duration-500 overflow-hidden group`}>
                   {/* Gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
@@ -639,13 +672,13 @@ export default function Portfolio() {
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
                       <div className="space-y-4">
                         {/* Job type badge */}
-                        <div className="inline-flex items-center space-x-2 bg-indigo-50 px-4 py-1.5 rounded-full">
-                          <div className="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></div>
-                          <span className="text-indigo-700 font-semibold text-sm">{exp.type}</span>
+                        <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-purple-500/20' : 'bg-indigo-50'} px-4 py-1.5 rounded-full`}>
+                          <div className={`w-2 h-2 ${darkMode ? 'bg-purple-400' : 'bg-indigo-600'} rounded-full animate-pulse`}></div>
+                          <span className={`${darkMode ? 'text-purple-300' : 'text-indigo-700'} font-semibold text-sm`}>{exp.type}</span>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                        <h3 className={`text-3xl md:text-4xl font-bold ${darkMode ? 'text-white group-hover:text-purple-400' : 'text-gray-900 group-hover:text-indigo-600'} transition-colors`}>
                           {exp.title}
                         </h3>
 
@@ -655,16 +688,16 @@ export default function Portfolio() {
                         </p>
 
                         {/* Location */}
-                        <div className="flex items-center space-x-2 text-gray-600">
-                          <MapPin size={20} className="text-indigo-600" />
+                        <div className={`flex items-center space-x-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                          <MapPin size={20} className={darkMode ? 'text-purple-400' : 'text-indigo-600'} />
                           <span className="text-lg">{exp.location}</span>
                         </div>
                       </div>
 
                       {/* Date */}
-                      <div className="flex items-center space-x-2 bg-gray-50 px-6 py-3 rounded-xl border border-gray-200">
-                        <Calendar size={20} className="text-indigo-600" />
-                        <span className="font-semibold text-gray-700">{exp.period}</span>
+                      <div className={`flex items-center space-x-2 ${darkMode ? 'bg-slate-700/50 border-slate-600' : 'bg-gray-50 border-gray-200'} px-6 py-3 rounded-xl border`}>
+                        <Calendar size={20} className={darkMode ? 'text-purple-400' : 'text-indigo-600'} />
+                        <span className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{exp.period}</span>
                       </div>
                     </div>
 
@@ -675,7 +708,7 @@ export default function Portfolio() {
                           <div className={`mt-1 w-8 h-8 rounded-lg bg-gradient-to-br ${exp.color} flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform shadow-sm`}>
                             <ChevronRight className="text-white" size={18} />
                           </div>
-                          <p className="text-lg text-gray-700 leading-relaxed group-hover/item:text-gray-900 transition-colors flex-1">
+                          <p className={`text-lg ${darkMode ? 'text-gray-300 group-hover/item:text-white' : 'text-gray-700 group-hover/item:text-gray-900'} leading-relaxed transition-colors flex-1`}>
                             {item}
                           </p>
                         </div>
@@ -687,7 +720,7 @@ export default function Portfolio() {
                 {/* Connecting line between experiences (not on last item) */}
                 {idx < experience.length - 1 && (
                   <div className="flex justify-center my-8">
-                    <div className="w-0.5 h-12 bg-gradient-to-b from-indigo-300 to-transparent"></div>
+                    <div className={`w-0.5 h-12 bg-gradient-to-b ${darkMode ? 'from-purple-500' : 'from-indigo-300'} to-transparent`}></div>
                   </div>
                 )}
               </div>
@@ -697,12 +730,12 @@ export default function Portfolio() {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-10 px-6 relative">
+      <section id="education" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200">
-              <GraduationCap className="text-indigo-600" size={18} />
-              <span className="text-indigo-600 font-semibold text-sm">Academic Background</span>
+            <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
+              <GraduationCap className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Academic Background</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -713,7 +746,7 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {education.map((edu, idx) => (
-              <div key={idx} className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-indigo-300 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <div key={idx} className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-indigo-300 hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
                 
                 <div className="relative space-y-6">
@@ -722,26 +755,26 @@ export default function Portfolio() {
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                    <h3 className={`text-2xl font-bold ${darkMode ? 'text-white group-hover:text-purple-400' : 'text-gray-900 group-hover:text-indigo-600'} transition-colors`}>
                       {edu.degree}
                     </h3>
                     <p className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       {edu.institution}
                     </p>
-                    <div className="flex items-center space-x-2 text-gray-600">
+                    <div className={`flex items-center space-x-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       <MapPin size={16} />
                       <span>{edu.location}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-lg w-fit">
-                    <Calendar size={16} className="text-indigo-600" />
-                    <span className="text-gray-700 font-medium text-sm">{edu.period}</span>
+                  <div className={`flex items-center space-x-2 ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'} px-4 py-2 rounded-lg w-fit`}>
+                    <Calendar size={16} className={darkMode ? 'text-purple-400' : 'text-indigo-600'} />
+                    <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} font-medium text-sm`}>{edu.period}</span>
                   </div>
 
-                  <div className="pt-4 border-t border-gray-200">
-                    <p className="text-sm font-semibold text-gray-700 mb-2">Focus Areas:</p>
-                    <p className="text-gray-600 leading-relaxed">{edu.focus}</p>
+                  <div className={`pt-4 ${darkMode ? 'border-slate-700' : 'border-gray-200'} border-t`}>
+                    <p className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Focus Areas:</p>
+                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>{edu.focus}</p>
                   </div>
                 </div>
               </div>
@@ -751,19 +784,19 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-10 px-6 relative bg-white/30 backdrop-blur-sm">
+      <section id="projects" className={`py-32 px-6 relative ${darkMode ? 'bg-slate-900/30' : 'bg-white/30'} backdrop-blur-sm`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200">
-              <Rocket className="text-indigo-600" size={18} />
-              <span className="text-indigo-600 font-semibold text-sm">Portfolio</span>
+            <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
+              <Rocket className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Portfolio</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Featured Projects
               </span>
             </h2>
-            <p className="pt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
               Real-world applications showcasing ML engineering expertise
             </p>
           </div>
@@ -771,7 +804,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Actual Projects */}
             {projects.map((project, idx) => (
-              <div key={idx} className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <div key={idx} className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
                 {/* Gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
 
@@ -785,19 +818,19 @@ export default function Portfolio() {
                         href={project.link} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+                        className={`w-10 h-10 ${darkMode ? 'bg-slate-700' : 'bg-gray-50'} rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors`}
                       >
-                        <ExternalLink className="text-gray-600" size={20} />
+                        <ExternalLink className={darkMode ? 'text-gray-400' : 'text-gray-600'} size={20} />
                       </a>
                     )}
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                    <h3 className={`text-2xl font-bold ${darkMode ? 'text-white group-hover:text-purple-400' : 'text-gray-900 group-hover:text-indigo-600'} transition-colors`}>
                       {project.title}
                     </h3>
-                    <p className="text-sm text-gray-500 font-medium">{project.period}</p>
-                    <p className="text-gray-700 leading-relaxed">{project.description}</p>
+                    <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'} font-medium`}>{project.period}</p>
+                    <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>{project.description}</p>
                   </div>
 
                   {project.highlights && (
@@ -812,7 +845,7 @@ export default function Portfolio() {
 
                   <div className="flex flex-wrap gap-2 pt-4">
                     {project.tech.map((tech, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
+                      <span key={i} className={`${darkMode ? 'bg-slate-700 text-gray-300' : 'bg-gray-100 text-gray-700'} px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors`}>
                         {tech}
                       </span>
                     ))}
@@ -823,20 +856,20 @@ export default function Portfolio() {
 
             {/* Placeholder Projects */}
             {[1, 2].map((num) => (
-              <div key={`placeholder-${num}`} className="group relative bg-gradient-to-br from-white/40 to-indigo-50/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-dashed border-indigo-300 hover:border-indigo-400 hover:shadow-xl transition-all duration-500 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500"></div>
+              <div key={`placeholder-${num}`} className={`group relative ${darkMode ? 'bg-slate-800/40 border-purple-500/40' : 'bg-gradient-to-br from-white/40 to-indigo-50/40 border-indigo-300'} backdrop-blur-sm rounded-2xl p-8 border-2 border-dashed hover:border-indigo-400 hover:shadow-xl transition-all duration-500 overflow-hidden`}>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-br from-purple-500/10 to-blue-500/10' : 'bg-gradient-to-br from-blue-500/5 to-purple-500/5'} group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500`}></div>
                 
                 <div className="relative text-center space-y-6">
                   <div className="relative inline-block">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Sparkles className="text-indigo-600" size={36} />
+                    <div className={`relative w-20 h-20 ${darkMode ? 'bg-gradient-to-br from-purple-500/20 to-blue-500/20' : 'bg-gradient-to-br from-blue-100 to-purple-100'} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Sparkles className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={36} />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold text-gray-800">Exciting Project Coming Soon</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Exciting Project Coming Soon</h3>
+                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>
                       Working on something amazing! This project will showcase cutting-edge ML solutions. Check back this week for updates.
                     </p>
                   </div>
@@ -856,16 +889,16 @@ export default function Portfolio() {
       <section id="contact" className="py-10 px-6 relative">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-200">
-              <Send className="text-indigo-600" size={18} />
-              <span className="text-indigo-600 font-semibold text-sm">Let's Connect</span>
+            <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
+              <Send className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Let's Connect</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Get in Touch
               </span>
             </h2>
-            <p className="pt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className={`pt-4 text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
               I'm actively seeking ML engineering opportunities. Let's build something amazing together!
             </p>
           </div>
@@ -873,7 +906,6 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {[
               { icon: Mail, label: 'Email', value: 'janmesh5900@gmail.com', href: 'mailto:janmesh5900@gmail.com', color: 'from-blue-500 to-cyan-500' },
-              // { icon: Phone, label: 'Phone', value: '+353 89 229 9380', href: 'tel:+353892299380', color: 'from-green-500 to-emerald-500' },
               { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/janmeshjoshi/', href: 'https://linkedin.com/in/janmeshjoshi/', color: 'from-blue-600 to-indigo-600' },
               { icon: MapPin, label: 'Location', value: 'Dublin, Ireland', href: null, color: 'from-purple-500 to-pink-500' }
             ].map((contact, idx) => (
@@ -882,7 +914,7 @@ export default function Portfolio() {
                 href={contact.href || '#'}
                 target={contact.href?.startsWith('http') ? '_blank' : undefined}
                 rel={contact.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`group relative bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden ${!contact.href && 'pointer-events-none'}`}
+                className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-6 border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden ${!contact.href && 'pointer-events-none'}`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${contact.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 
@@ -891,10 +923,10 @@ export default function Portfolio() {
                     <contact.icon className="text-white" size={24} />
                   </div>
                   <div className="flex-grow">
-                    <p className="font-semibold text-gray-900 mb-1">{contact.label}</p>
-                    <p className="text-gray-600 text-sm break-all">{contact.value}</p>
+                    <p className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'} mb-1`}>{contact.label}</p>
+                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-sm break-all`}>{contact.value}</p>
                   </div>
-                  {contact.href && <ChevronRight className="text-gray-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all" size={20} />}
+                  {contact.href && <ChevronRight className={`${darkMode ? 'text-gray-600 group-hover:text-purple-400' : 'text-gray-400 group-hover:text-indigo-600'} group-hover:translate-x-1 transition-all`} size={20} />}
                 </div>
               </a>
             ))}
@@ -914,13 +946,12 @@ export default function Portfolio() {
               <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white/30 backdrop-blur-sm border-t border-gray-200/50 py-12 px-6">
+      <footer className={`${darkMode ? 'bg-slate-900/80 border-slate-800/50' : 'bg-white/30 border-gray-200/50'} backdrop-blur-lg border-t py-12 px-6`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4">
             <div className="flex items-center justify-center space-x-3">
@@ -931,8 +962,8 @@ export default function Portfolio() {
                 Janmesh Joshi
               </span>
             </div>
-            <p className="text-gray-600">© 2025 Janmesh Joshi. Crafted with passion for AI innovation.</p>
-            <p className="text-sm text-gray-500">Available for full-time ML engineering opportunities</p>
+            <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>© 2025 Janmesh Joshi. Crafted with passion for AI innovation.</p>
+            <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>Available for full-time ML engineering opportunities</p>
           </div>
         </div>
       </footer>
