@@ -161,12 +161,9 @@ export default function Portfolio() {
       period: '2025',
       tech: ["Python", "FastAPI", "OpenAI Whisper", "Docker", "Google Cloud Run", "HTML", "CSS", "JavaScript"],
       highlights: ['Real-time Transcription', 'Cloud-deployed (CI/CD)', 'Whisper model integration'],
-      links: {
-        demo: 'https://echoverse-593998396101.us-central1.run.app/',
-        github: 'https://github.com/JanmeshJ/EchoVerse'
-      },
+      link: 'https://echoverse-593998396101.us-central1.run.app/',
 
-      gradient: 'from-green-500 via-emerald-500 to-teal-500',
+      gradient: 'from-green-500 via-emerald-500 to-teal-500'
       
       // background_image: 'echoversePhoto'
     },
