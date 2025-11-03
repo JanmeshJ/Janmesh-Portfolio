@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Linkedin, Github, MapPin, ExternalLink, Calendar, Award, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Phone, Download, Sparkles, Rocket, Zap, Target, Menu, X, Sun, Moon } from 'lucide-react';
+import { Mail, Linkedin, Github, Youtube, Video, MapPin, ExternalLink, Calendar, Award, ChevronRight, Code2, Database, Cloud, Brain, Terminal, Briefcase, GraduationCap, Folder, Send, Phone, Download, Sparkles, Rocket, Zap, Target, Menu, X, Sun, Moon } from 'lucide-react';
 import profilePhoto from './profile.png';
+import echoversePhoto from './echoverse.png'
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('about');
@@ -104,10 +105,10 @@ export default function Portfolio() {
       period: 'June 2022 – Aug. 2024',
       type: 'Full-time',
       description: [
-        'Designed and deployed predictive ML models on AWS, achieving 30% efficiency improvement',
-        'Built scalable ETL pipelines using Python and Pandas for high-throughput data processing',
-        'Implemented distributed training workflows with monitoring and error-handling mechanisms',
-        'Collaborated with cross-functional teams to ensure production-readiness of ML systems'
+        'Spearheaded the design and deployment of predictive ML models on distributed cloud infrastructure (AWS), resulting in a documented 30% improvement in forecasting efficiency for time-series workloads.',
+    'Engineered and managed scalable ETL data pipelines using Python, Pandas, and AWS services (S3/EC2), supporting high-throughput ingestion and preparation of over 1TB of raw data.',
+    'Implemented fault-tolerant distributed training workflows and continuous monitoring mechanisms (AWS SageMaker/CloudWatch) to ensure system reliability and prompt error-handling in production.',
+    'Drove cross-functional collaboration with DevOps and Product teams to ensure seamless CI/CD integration and production-readiness of mission critical ML applications.'
       ],
       color: 'from-blue-500 to-indigo-500'
     },
@@ -118,9 +119,9 @@ export default function Portfolio() {
       period: 'Feb. 2025 – Present',
       type: 'Part-time',
       description: [
-        'Teaching database optimization and distributed querying (PostgreSQL/MySQL)',
-        'Conducting hands-on sessions on algorithms and scalable backend design',
-        'Mentoring students in concurrency patterns and resource allocation'
+        'Conducted regular practical sessions teaching 2nd-year students core Python fundamentals, including object-oriented programming (OOP), data structures (lists, dictionaries), and practical module usage (NumPy, Pandas).',
+        'Led comprehensive workshops on **SQL and database management** (PostgreSQL/MySQL), focusing on essential skills like complex joins, query optimization, and data normalization.',
+        'Mentored over 50 students individually on assignments, debugging complex code, and solidifying foundational concepts necessary for subsequent advanced machine learning courses.'
       ],
       color: 'from-purple-500 to-pink-500'
     }
@@ -131,8 +132,8 @@ export default function Portfolio() {
       degree: "Master's in Human Centered Artificial Intelligence",
       institution: 'Technological University of Dublin',
       location: 'Dublin, Ireland',
-      period: 'Sept. 2024 – Expected Sept. 2025',
-      focus: 'Explainable AI, Conversational AI, Human-AI Interaction',
+      period: 'Sept. 2024 – Oct. 2025',
+      focus: 'Explainable AI, Conversational AI, Human-AI Interaction, Generative AI',
       color: 'from-indigo-500 to-purple-500'
     },
     {
@@ -142,14 +143,37 @@ export default function Portfolio() {
       period: 'Aug. 2020 – May 2022',
       focus: 'Machine Learning, Data Science, Software Engineering',
       color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      degree: "Bachelors's in Information Technology",
+      institution: 'University of Mumbai',
+      location: 'Mumbai, India',
+      period: 'Aug. 2020 – May 2022',
+      focus: 'Software Engineering, OOPS Concepts, DBMS',
+      color: 'from-blue-500 to-cyan-500'
     }
   ];
 
   const projects = [
     {
+      title: 'EchoVerse – Real-Time Speech Intelligence',
+      description: 'Developed a production-grade Speech-to-Text web application that converts spoken audio into accurate text in real time using OpenAI Whisper and FastAPI. Deployed a fully containerized backend with Docker and Google Cloud Run, integrated CI/CD with Cloud Build, and built a modern responsive UI for audio recording, upload, and live transcription.',
+      period: '2025',
+      tech: ["Python", "FastAPI", "OpenAI Whisper", "Docker", "Google Cloud Run", "HTML", "CSS", "JavaScript"],
+      highlights: ['Real-time Transcription', 'Cloud-deployed (CI/CD)', 'Whisper model integration'],
+      links: {
+        demo: 'https://echoverse-593998396101.us-central1.run.app/',
+        github: 'https://github.com/JanmeshJ/EchoVerse'
+      },
+
+      gradient: 'from-green-500 via-emerald-500 to-teal-500',
+      
+      // background_image: 'echoversePhoto'
+    },
+    {
       title: 'Customer Intent Classification in AI Chatbot',
       description: 'Built a Flask REST API serving an NLP intent classification model with 92% accuracy across 500+ real-world queries. Implemented continuous learning pipeline with automated retraining and model versioning.',
-      period: 'Dec. 2021 – April 2022',
+      period: '2024',
       tech: ['Python', 'Flask', 'Scikit-learn', 'NLTK', 'REST APIs', 'SQLite'],
       highlights: ['92% accuracy', '500+ queries handled', 'Real-time inference'],
       link: null,
@@ -158,12 +182,13 @@ export default function Portfolio() {
     {
       title: 'Digital Notice Board System',
       description: 'Interactive desktop application featuring real-time UI updates and automated content rendering. Designed with object-oriented principles ensuring modularity and future extensibility.',
-      period: 'Jan. 2018 – July 2020',
+      period: '2025',
       tech: ['Python', 'Tkinter', 'SQLite', 'OOP', 'Event-driven architecture'],
       highlights: ['Real-time updates', 'Modular design', 'User-friendly interface'],
       link: null,
       gradient: 'from-green-500 via-emerald-500 to-teal-500'
     }
+    
   ];
 
   const certifications = [
@@ -173,7 +198,7 @@ export default function Portfolio() {
   ];
 
   const stats = [
-    { label: 'Years Experience', value: '2+', icon: Briefcase },
+    { label: 'Years Experience', value: '3+', icon: Briefcase },
     { label: 'Projects Completed', value: '10+', icon: Rocket },
     { label: 'Technologies', value: '20+', icon: Zap },
     { label: 'Certifications', value: '3', icon: Award }
@@ -367,7 +392,7 @@ export default function Portfolio() {
                   <img 
                     src={profilePhoto} 
                     alt="Janmesh Joshi" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-[50%_78%]"
                   />
                 </div>
               </div>
@@ -375,10 +400,10 @@ export default function Portfolio() {
               {/* Name and title section */}
               <div className="space-y-8 text-center md:text-left flex-1 max-w-3xl">
                 {/* Badge */}
-                <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-5 py-2.5 rounded-full border shadow-sm`}>
+                {/* <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-5 py-2.5 rounded-full border shadow-sm`}>
                   <Sparkles className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={20} />
                   <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-base`}>Learning Everyday</span>
-                </div>
+                </div> */}
 
                 <div className="space-y-6">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
@@ -389,7 +414,7 @@ export default function Portfolio() {
                     </span>
                   </h1>
                   <div className="flex items-center space-x-3 justify-center md:justify-start">
-                    <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                    {/* <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div> */}
                     <p className={`text-2xl md:text-4xl ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-light`}>AI/ML Engineer</p>
                   </div>
                 </div>
@@ -398,29 +423,29 @@ export default function Portfolio() {
 
             {/* Description and content */}
             <div className="space-y-12 text-center md:text-left">
-              <p className={`text-xl md:text-2xl ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed max-w-5xl mx-auto md:mx-0`}>
-                Crafting intelligent systems with <span className="font-semibold text-blue-600">2+ years</span> of experience in scalable ML solutions and distributed systems. Currently pursuing MSc in <span className="font-semibold text-purple-600">Human-Centered AI</span>.
+              <p className={`text-xl md:text-2xl ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed max-w-5xl mx-auto md:start-center`}>
+                Crafting intelligent systems with <span className="font-semibold text-blue-600">over 3 years</span> of experience in scalable ML solutions and distributed systems. Pursuing MSc in <span className="font-semibold text-purple-600">Human-Centered AI</span>.
               </p>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto md:mx-0 pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto md:start-center pt-3">
                 {stats.map((stat, idx) => (
-                  <div key={idx} className={`${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-6 border hover:border-indigo-300 hover:shadow-lg transition-all duration-300 group`}>
-                    <stat.icon className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} mb-3 group-hover:scale-110 transition-transform`} size={28} />
+                  <div key={idx} className={`text-center ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-2 border hover:border-indigo-300 hover:shadow-lg transition-all duration-300 group`}>
+                    <stat.icon className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} mb-0 group-hover:scale-110 transition-transform`} size={28} />
                     <p className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>{stat.value}</p>
                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start pt-6">
+              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start pt-4">
                 <button
                   onClick={() => scrollToSection('projects')}
                   className="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center space-x-2">
                     <span>View Projects</span>
-                    <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                    <ChevronRight className="group-hover:translate-x-3 transition-transform" size={20} />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
@@ -430,13 +455,13 @@ export default function Portfolio() {
                 >
                   Get in Touch
                 </button>
-              </div>
 
-              <div className="flex items-center space-x-5 justify-center md:justify-start pt-4">
                 {[
                   { icon: Mail, href: 'mailto:janmesh5900@gmail.com', label: 'Email' },
                   { icon: Linkedin, href: 'https://linkedin.com/in/janmeshjoshi/', label: 'LinkedIn' },
-                  { icon: Github, href: 'https://github.com/janmesh', label: 'GitHub' }
+                  { icon: Github, href: 'https://github.com/janmeshj', label: 'GitHub' },
+                  { icon: Video, href: 'https://www.tiktok.com/@actually.indian.ai', label: 'TikTok' }, 
+                  { icon: Youtube, href: 'https://www.youtube.com/@ActuallyIndian_AI/', label: 'YouTube' }
                 ].map((social, idx) => (
                   <a
                     key={idx}
@@ -449,6 +474,10 @@ export default function Portfolio() {
                   </a>
                 ))}
               </div>
+
+              {/* <div className="flex items-center space-x-5 justify-center md:justify-start pt-4">
+                
+              </div> */}
             </div>
           </div>
         </div>
@@ -516,7 +545,7 @@ export default function Portfolio() {
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
-                  {['Python', 'JavaScript', 'C++', 'SQL', 'Git', 'REST APIs'].map((skill, i) => (
+                  {['Python', 'JavaScript',  'SQL', 'Git', 'REST APIs'].map((skill, i) => (
                     <span key={i} className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-blue-500/20 border-blue-500/50 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'} hover:bg-blue-100 border px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-default`}>
                       <div className={`w-1.5 h-1.5 ${darkMode ? 'bg-blue-400' : 'bg-blue-500'} rounded-full`}></div>
                       <span>{skill}</span>
@@ -789,7 +818,7 @@ export default function Portfolio() {
           <div className="text-center mb-16 space-y-4">
             <div className={`inline-flex items-center space-x-2 ${darkMode ? 'bg-slate-800/60 border-slate-700' : 'bg-white/60 border-indigo-200'} backdrop-blur-sm px-4 py-2 rounded-full border`}>
               <Rocket className={darkMode ? 'text-purple-400' : 'text-indigo-600'} size={18} />
-              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Portfolio</span>
+              <span className={`${darkMode ? 'text-purple-400' : 'text-indigo-600'} font-semibold text-sm`}>Passion</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -804,7 +833,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Actual Projects */}
             {projects.map((project, idx) => (
-              <div key={idx} className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
+              <div key={idx} className={`group relative ${darkMode ? 'bg-slate-800/60 border-slate-700/50' : 'bg-white/60 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-8 border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden `}>
                 {/* Gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
 
@@ -899,7 +928,7 @@ export default function Portfolio() {
               </span>
             </h2>
             <p className={`pt-4 text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
-              I'm actively seeking ML engineering opportunities. Let's build something amazing together!
+              I'm actively seeking ML/AI engineering opportunities. Let's build something amazing together!
             </p>
           </div>
 
@@ -907,7 +936,7 @@ export default function Portfolio() {
             {[
               { icon: Mail, label: 'Email', value: 'janmesh5900@gmail.com', href: 'mailto:janmesh5900@gmail.com', color: 'from-blue-500 to-cyan-500' },
               { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/janmeshjoshi/', href: 'https://linkedin.com/in/janmeshjoshi/', color: 'from-blue-600 to-indigo-600' },
-              { icon: MapPin, label: 'Location', value: 'Dublin, Ireland', href: null, color: 'from-purple-500 to-pink-500' }
+              { icon: MapPin, label: 'Location', value: 'Dublin, Ireland', href: 'https://www.google.com/maps/place/Dublin', color: 'from-purple-500 to-pink-500' }
             ].map((contact, idx) => (
               <a
                 key={idx}
@@ -963,7 +992,7 @@ export default function Portfolio() {
               </span>
             </div>
             <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>© 2025 Janmesh Joshi. Crafted with passion for AI innovation.</p>
-            <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>Available for full-time ML engineering opportunities</p>
+            <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>Available for full-time ML/AI engineering opportunities</p>
           </div>
         </div>
       </footer>
