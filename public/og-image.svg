@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#090909"/>
+  <line x1="80" y1="80" x2="200" y2="80" stroke="#2a2926" stroke-width="1"/>
+  <text x="80" y="160" fill="#8a8780" font-family="system-ui,sans-serif" font-size="14" letter-spacing="6">PORTFOLIO</text>
+  <text x="80" y="290" fill="#f0eeea" font-family="Georgia,serif" font-size="88">Janmesh Joshi</text>
+  <text x="80" y="360" fill="#c9b896" font-family="system-ui,sans-serif" font-size="28" font-weight="500">AI &amp; ML Engineer</text>
+  <text x="80" y="420" fill="#8a8780" font-family="system-ui,sans-serif" font-size="20">Dublin, Ireland</text>
+</svg>

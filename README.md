@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Janmesh Joshi · Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio site for Janmesh Joshi, AI & ML Engineer based in Dublin, Ireland.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- React 19 + Create React App
+- Tailwind CSS 3
+- Lucide React icons
 
-### `npm start`
+## Development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open [http://localhost:3000](http://localhost:3000).
 
-### `npm test`
+## Production build
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run build
+```
 
-### `npm run build`
+Output goes to `build/`. Serve locally with:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npx serve -s build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Configuration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Copy `.env.example` to `.env.local` and set:
 
-### `npm run eject`
+| Variable | Description |
+|----------|-------------|
+| `REACT_APP_FORMSPREE_URL` | Formspree endpoint for the contact form |
+| `REACT_APP_SITE_URL` | Public site URL (defaults to `https://janmeshjoshi.dev`) |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Without Formspree, the contact form falls back to opening the user's email client.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Resume
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Place your PDF at `public/janmesh-joshi-resume.pdf`. If you have an older file named `Janmesh Resume.pdf`, rename it to match.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Deploy
 
-## Learn More
+Works on Vercel, Netlify, GitHub Pages, or any static host. Set `REACT_APP_SITE_URL` to your production domain before building.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+  components/   UI sections (Hero, Projects, Contact, …)
+  data/         Content and site constants
+  hooks/        Scroll, reveal, accessibility hooks
+  utils/        Helpers
+```
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Private · © Janmesh Joshi

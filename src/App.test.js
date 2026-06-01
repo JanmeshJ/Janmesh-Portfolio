@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders hero with name', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByRole('heading', { level: 1, name: /Janmesh Joshi/i })).toBeInTheDocument();
+});
+
+test('renders navigation links', () => {
+  render(<App />);
+  const nav = screen.getByRole('navigation', { name: /main navigation/i });
+  expect(nav).toBeInTheDocument();
+  expect(within(nav).getByRole('link', { name: /^Work$/ })).toBeInTheDocument();
+  expect(within(nav).getByRole('link', { name: /^About$/ })).toBeInTheDocument();
 });
