@@ -27,8 +27,8 @@ export const NAV_LINKS = [
 ];
 
 export const HERO_STATS = [
-  { v: '3+', l: 'Years', sub: 'Production ML engineering' },
-  { v: '1TB+', l: 'Processed', sub: 'ETL pipelines at scale' },
+  { v: '4+', l: 'Years', sub: 'Production ML engineering' },
+  { v: '35%', l: 'Uplift', sub: 'Semantic retrieval vs. BM25' },
   { v: '98%', l: 'Accuracy', sub: 'IntentAI classifier' },
   { v: 'Live', l: 'Product', sub: 'mynextroom.ie' },
 ];

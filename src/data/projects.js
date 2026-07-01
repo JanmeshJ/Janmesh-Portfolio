@@ -8,29 +8,29 @@ export const PROJECTS = [
     featured: true,
     isMobile: true,
     description:
-      'Full-stack mobile rental marketplace for the Irish market. Tenants browse verified listings with video walkthroughs, filter by location, chat with landlords in real-time, and save favourites.',
-    tech: ['React Native', 'Expo', 'Supabase', 'PostgreSQL', 'Google Maps', 'Cloudinary'],
+      'Full-stack mobile rental marketplace for the Irish market. Tenants browse verified listings with video walkthroughs, filter by location, chat with landlords in real-time, and get matched by a learned similarity model. A Random Forest classifier scores listings for fraud in real time.',
+    tech: ['React Native', 'Expo', 'Supabase', 'PostgreSQL', 'FastAPI', 'Google Cloud Run', 'Scikit-learn', 'PostHog'],
     link: 'https://mynextroom.ie',
     github: 'https://github.com/JanmeshJ/MyNextRoom',
-    highlights: ['Real-time Chat', 'Video Walkthroughs', 'Map Search', 'Apple Sign-In'],
-    metrics: ['Live product', 'Real-time chat', 'Map search', 'Video listings'],
-    architecture: 'React Native → Supabase → Cloudinary → Google Maps',
+    highlights: ['Real-time Chat', 'Fraud Detection', 'k-NN Matching', 'Video Verification'],
+    metrics: ['Live product', '200+ waitlist signups', 'Real-time chat', 'ML fraud scoring'],
+    architecture: 'React Native → Supabase → FastAPI (Cloud Run) → Random Forest / k-NN',
     img: '/images/mynextroom.png',
     caseStudy: {
       problem:
-        'Ireland\'s rental market is fragmented and opaque. Listings live across Facebook groups, agency sites, and word of mouth. Tenants waste hours on outdated posts; landlords struggle to reach serious renters.',
+        'Ireland\'s rental market is fragmented and opaque. Listings live across Facebook groups, agency sites, and word of mouth. Tenants waste hours on outdated or fraudulent posts; landlords struggle to reach serious renters.',
       approach:
-        'Built a mobile-first marketplace from zero: verified listings, map-based discovery, in-app chat, and Cloudinary-hosted video walkthroughs so tenants can shortlist before viewing.',
+        'Built a mobile-first marketplace from zero: verified listings, real-time chat, and universal deep linking. Trained a Random Forest classifier on listing price-to-area feature vectors to flag anomalous listings for moderation, served via FastAPI on Google Cloud Run. Built a k-NN compatibility matching system in Scikit-learn over renter-listing feature vectors (budget, move-in date, housing preferences) to replace rule-based filtering.',
       outcome:
-        'Shipped solo as founder. Live on mynextroom.ie with auth, realtime messaging, favourites, and location filters. The stack is designed to scale listing volume without rewriting core flows.',
+        'Shipped solo as founder. Submitted to the App Store with 200+ waitlist signups prior to launch. GPS-based search via expo-location, video verification for listing authenticity, and PostHog for funnel tracking are all live in production.',
       stack: [
-        { layer: 'Client', detail: 'React Native + Expo, Apple Sign-In, offline-friendly state' },
+        { layer: 'Client', detail: 'React Native + Expo, GPS search via expo-location, push notifications' },
         { layer: 'Backend', detail: 'Supabase Auth, Postgres, Row Level Security, realtime subscriptions' },
-        { layer: 'Media', detail: 'Cloudinary for video walkthroughs and image transforms' },
-        { layer: 'Maps', detail: 'Google Maps for geocoded search and listing pins' },
+        { layer: 'ML Services', detail: 'Random Forest fraud scoring + k-NN matching via FastAPI on Google Cloud Run' },
+        { layer: 'Analytics', detail: 'PostHog for product analytics and funnel tracking' },
       ],
       learned:
-        'Marketplace products fail on trust and speed, not model complexity. Realtime chat and video did more for conversion than any ranking algorithm I could have shipped first.',
+        'Marketplace products fail on trust and speed, not model complexity. A lightweight fraud classifier and a learned matching model moved the needle more than any deep model would have this early.',
     },
   },
   {
@@ -97,5 +97,30 @@ export const PROJECTS = [
     privateNote: 'Academic project, repo on request',
     metrics: ['RBAC roles', 'SQLite', 'Event-driven'],
     architecture: 'Tkinter → SQLite → RBAC',
+  },
+  {
+    num: '05',
+    name: 'Ethical AI & Risk Modeling for AI Tutors',
+    subtitle: 'MSc Thesis, TU Dublin',
+    year: 'Sept 2024 – Oct 2025',
+    type: 'Research',
+    description:
+      'MSc thesis engineering an ML pipeline to detect user over-reliance on AI tutoring systems, with Explainable AI techniques to surface the behavioural drivers behind model decisions.',
+    tech: ['Python', 'Scikit-learn', 'Random Forest', 'SHAP'],
+    link: null,
+    github: null,
+    privateNote: 'Academic thesis, details on request',
+    metrics: ['0.89 Macro F1', 'SHAP explainability'],
+    architecture: 'Feature engineering → Random Forest → SHAP',
+    caseStudy: {
+      problem:
+        'AI tutoring systems risk fostering over-reliance, where students lean on model answers instead of building understanding. Detecting this pattern requires more than accuracy: it needs an explanation a human can act on.',
+      approach:
+        'Engineered a Random Forest pipeline to classify over-reliance from interaction-level features, then applied SHAP (Shapley Additive exPlanations) to interpret predictions and identify behavioural drivers such as prompt verbosity and solution-seeking patterns.',
+      outcome:
+        'Achieved a Macro F1 of 0.89 on the classification task, with SHAP outputs that made the model\'s reasoning legible to non-technical stakeholders evaluating AI governance in education.',
+      learned:
+        'For high-stakes, regulated use cases, explainability is not an add-on. SHAP analysis surfaced behavioural signals that shaped the recommendations more than the raw accuracy number did.',
+    },
   },
 ];

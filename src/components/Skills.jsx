@@ -1,5 +1,5 @@
 import { SectionHeader } from './SectionHeader';
-import { SKILLS, CERTIFICATIONS } from '../data/skills';
+import { SKILLS } from '../data/skills';
 
 export default function Skills() {
   return (
@@ -23,18 +23,6 @@ export default function Skills() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-14 reveal">
-          <p className="eyebrow mb-6">Certifications</p>
-          <div className="grid sm:grid-cols-3 gap-px bg-line border border-line">
-            {CERTIFICATIONS.map((c) => (
-              <div key={c.name} className="bg-void p-5">
-                <p className="text-sm font-medium text-ink tracking-tight">{c.name}</p>
-                <p className="text-xs text-muted mt-1">{c.issuer}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 export const ABOUT = {
   headline: 'I build ML systems and ship the products around them.',
   paragraphs: [
-    'Most of my work sits at the intersection of machine learning and product: training models, wiring them into APIs, and getting them in front of real users. At Panghat I ran distributed training on AWS and ETL at terabyte scale. Now I am founder of MyNextRoom, a live rental marketplace for Ireland.',
+    'Most of my work sits at the intersection of machine learning and product: training models, wiring them into APIs, and getting them in front of real users. At Panghat I built RAG pipelines and semantic search over 500K+ legal documents. Now I am founder of MyNextRoom, a live rental marketplace for Ireland with ML-driven fraud detection.',
     'I care about production constraints: latency, monitoring, data drift, and whether the model actually moves a metric. Research is useful; deployed systems are the proof.',
     'Based in Dublin. Open to ML Engineer roles, contract work, and founder collaborations across the EU. Remote-friendly.',
   ],

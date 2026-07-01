@@ -3,7 +3,6 @@ import { SITE } from '../data/site';
 
 const RESUME_PATHS = [
   '/janmesh-joshi-resume.pdf',
-  '/Janmesh%20Resume.pdf',
 ];
 
 async function findResumeUrl() {
