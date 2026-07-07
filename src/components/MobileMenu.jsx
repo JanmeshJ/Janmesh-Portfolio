@@ -3,6 +3,7 @@ import { useFocusTrap } from '../hooks/useFocusTrap';
 import { NAV_LINKS, SOCIAL } from '../data/site';
 import SectionLink from './SectionLink';
 import ResumeLink from './ResumeLink';
+import { trackEvent } from '../utils/analytics';
 
 export default function MobileMenu({ open, onClose, activeId }) {
   const trapRef = useFocusTrap(open);
@@ -62,6 +63,7 @@ export default function MobileMenu({ open, onClose, activeId }) {
               rel={external ? 'noopener noreferrer' : undefined}
               aria-label={label}
               className="text-muted hover:text-ink p-2"
+              onClick={() => trackEvent('contact_click', { method: label, source: 'mobile_menu' })}
             >
               <Icon size={20} />
             </a>

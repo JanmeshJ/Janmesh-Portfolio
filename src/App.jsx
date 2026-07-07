@@ -3,6 +3,7 @@ import { handleSectionClick } from './utils/scroll';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useActiveSection } from './hooks/useActiveSection';
+import { useSectionTracking } from './hooks/useSectionTracking';
 import {
   LoadingScreen,
   ScrollProgress,
@@ -27,6 +28,7 @@ export default function App() {
   const activeId = useActiveSection();
 
   useScrollReveal([loading]);
+  useSectionTracking();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';

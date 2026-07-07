@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { MetricChips, CaseStudyBlock } from './CaseStudy';
 import { PROJECTS } from '../data/projects';
@@ -35,39 +35,24 @@ function ProjectRow({ project, index }) {
             <span key={t} className="text-[11px] text-faint">{t}</span>
           ))}
         </div>
-        {project.link && (
+        {href && (
           <a
-            href={project.link}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="link-underline text-sm mt-5 inline-flex items-center gap-1.5 w-fit"
             onClick={(e) => {
               e.stopPropagation();
-              trackEvent('project_link_click', { project: project.name, link: 'live' });
+              trackEvent('project_link_click', { project: project.name, link: project.link ? 'live' : 'github' });
             }}
           >
-            View project <ExternalLink size={12} aria-hidden="true" />
+            {project.link ? 'View project' : 'View code'} <ExternalLink size={12} aria-hidden="true" />
           </a>
         )}
       </div>
 
       <div className="flex flex-col items-end gap-3 shrink-0 pt-1">
         <span className="text-[11px] text-faint font-sans">{project.year}</span>
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-faint hover:text-ink transition-colors"
-            aria-label={`Open ${project.name}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              trackEvent('project_link_click', { project: project.name });
-            }}
-          >
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
-        ) : null}
       </div>
     </div>
   );
