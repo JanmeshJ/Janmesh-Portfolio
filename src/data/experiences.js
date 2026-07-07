@@ -6,15 +6,14 @@ export const EXPERIENCES = [
     location: 'Dublin, Ireland',
     type: 'Founder',
     points: [
-      'Sole founder and engineer of a cross-platform iOS/Android rental marketplace built with React Native/Expo, Supabase (PostgreSQL), real-time messaging, push notifications, and universal deep linking; submitted to the App Store with 200+ waitlist signups prior to launch.',
+      'Sole founder and engineer of a cross-platform rental marketplace built with React Native/Expo, PostgreSQL, FastAPI, and Google Cloud Run, featuring real-time messaging, push notifications, universal deep linking, and AI-powered fraud detection.',
       'Trained and deployed a Random Forest fraud detection classifier on listing price-to-area feature vectors, serving automated anomaly scoring for real-time listing moderation via FastAPI on Google Cloud Run.',
       'Built a k-NN compatibility matching system using Scikit-learn on structured renter-listing feature vectors spanning budget, move-in date, and housing preferences, replacing rule-based filtering with a learned similarity model.',
-      'Integrated GPS-based location features via expo-location, video verification for listing authenticity, and PostHog for product analytics and funnel tracking.',
     ],
   },
   {
     period: 'Jun 2020 – Aug 2024',
-    company: 'Panghat',
+    company: 'Panghat · Legal-tech startup building AI search over case law',
     role: 'Machine Learning Engineer',
     location: 'Mumbai, India',
     type: 'Full-time',
@@ -32,29 +31,28 @@ export const EXPERIENCES = [
     location: 'Dublin, Ireland',
     type: 'Part-time',
     points: [
-      'Delivered Machine Learning lectures (supervised learning, model evaluation, neural networks, and more) to 50+ first-year undergraduate students.',
-      'Taught Python programming including data structures, OOP, and clean code principles, conducting code reviews to enforce modular design and best practices.',
+      'Delivered Machine Learning and Python labs to 50+ undergraduate students, covering supervised learning, neural networks, data structures, and clean software engineering practices while conducting code reviews and mentoring students.',
     ],
   },
 ];
 
 export const EDUCATION = [
   {
-    degree: "Master's, Human Centered Artificial Intelligence",
+    degree: 'MSc, Human Centered Artificial Intelligence',
     school: 'Technological University of Dublin',
     period: 'Sept 2024 – Oct 2025',
-    focus: 'Explainable AI · Governance for high-stakes environments',
+    focus: 'Explainable AI · AI Governance for regulated environments',
   },
   {
-    degree: "Master's, Information Technology",
+    degree: 'MSc, Information Technology',
     school: 'University of Mumbai',
     period: 'Aug 2020 – May 2022',
     focus: 'Machine Learning · Data Science',
   },
   {
-    degree: 'BSc Information Technology',
+    degree: 'BSc, Information Technology',
     school: 'University of Mumbai',
-    period: '2017 – 2020',
+    period: 'Aug 2017 – May 2020',
     focus: 'Software Engineering · DBMS',
   },
 ];

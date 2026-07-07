@@ -3,6 +3,7 @@ import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { MetricChips, CaseStudyBlock } from './CaseStudy';
 import { PROJECTS } from '../data/projects';
+import { trackEvent } from '../utils/analytics';
 
 function ProjectRow({ project, index }) {
   const [hovered, setHovered] = useState(false);
@@ -34,6 +35,20 @@ function ProjectRow({ project, index }) {
             <span key={t} className="text-[11px] text-faint">{t}</span>
           ))}
         </div>
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline text-sm mt-5 inline-flex items-center gap-1.5 w-fit"
+            onClick={(e) => {
+              e.stopPropagation();
+              trackEvent('project_link_click', { project: project.name, link: 'live' });
+            }}
+          >
+            View project <ExternalLink size={12} aria-hidden="true" />
+          </a>
+        )}
       </div>
 
       <div className="flex flex-col items-end gap-3 shrink-0 pt-1">
@@ -45,7 +60,10 @@ function ProjectRow({ project, index }) {
             rel="noopener noreferrer"
             className="text-faint hover:text-ink transition-colors"
             aria-label={`Open ${project.name}`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              trackEvent('project_link_click', { project: project.name });
+            }}
           >
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
@@ -69,7 +87,10 @@ function ProjectRow({ project, index }) {
         <div className="px-6 sm:px-10 pb-6 -mt-4">
           <button
             type="button"
-            onClick={() => setExpanded((v) => !v)}
+            onClick={() => {
+              if (!expanded) trackEvent('case_study_open', { project: project.name });
+              setExpanded((v) => !v);
+            }}
             className="text-xs text-muted hover:text-ink underline-offset-4 hover:underline transition-colors"
             aria-expanded={expanded}
           >
@@ -101,7 +122,6 @@ function ProjectRow({ project, index }) {
 
 export default function Projects() {
   const featured = PROJECTS[0];
-  const echoVerse = PROJECTS[1];
 
   return (
     <section id="projects" className="py-24 px-6 lg:px-12">
@@ -124,10 +144,22 @@ export default function Projects() {
                 {featured.highlights?.map((h) => <li key={h}>{h}</li>)}
               </ul>
               <div className="flex gap-4">
-                <a href={featured.link} target="_blank" rel="noopener noreferrer" className="btn-primary text-xs">
+                <a
+                  href={featured.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary text-xs"
+                  onClick={() => trackEvent('project_link_click', { project: featured.name, link: 'live' })}
+                >
                   mynextroom.ie <ExternalLink size={12} aria-hidden="true" />
                 </a>
-                <a href={featured.github} target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs">
+                <a
+                  href={featured.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs"
+                  onClick={() => trackEvent('project_link_click', { project: featured.name, link: 'github' })}
+                >
                   <Github size={13} aria-hidden="true" /> Code
                 </a>
               </div>
@@ -147,32 +179,8 @@ export default function Projects() {
 
         <CaseStudyBlock study={featured.caseStudy} title={featured.name} />
 
-        <div className="reveal panel mb-12 mt-16 overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[280px] overflow-hidden border-b lg:border-b-0 lg:border-r border-line bg-surface-2">
-              {echoVerse.img && (
-                <img
-                  src={echoVerse.img}
-                  alt="EchoVerse speech-to-text application"
-                  className="w-full h-full object-cover opacity-95"
-                  loading="lazy"
-                />
-              )}
-            </div>
-            <div className="p-8 lg:p-10 flex flex-col justify-center">
-              <span className="text-sm text-faint font-sans mb-2">{echoVerse.num}</span>
-              <h3 className="project-title mb-2">{echoVerse.name}</h3>
-              <MetricChips metrics={echoVerse.metrics} />
-              <p className="text-sm text-muted mb-4 leading-relaxed">{echoVerse.description}</p>
-              <a href={echoVerse.link} target="_blank" rel="noopener noreferrer" className="link-underline text-sm w-fit inline-flex items-center gap-1.5">
-                Live demo <ExternalLink size={12} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-line">
-          {PROJECTS.slice(2).map((p, i) => (
+        <div className="border-t border-line mt-16">
+          {PROJECTS.slice(1).map((p, i) => (
             <ProjectRow key={p.num} project={p} index={i} />
           ))}
         </div>

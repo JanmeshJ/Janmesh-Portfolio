@@ -40,7 +40,7 @@ export default function Hero() {
 
             <div className="hero-el mb-10" style={{ animationDelay: '180ms' }}>
               <p className="hero-lede">
-                {SITE.tagline} Previously at Panghat deploying ML on AWS; now building{' '}
+                {SITE.tagline} Previously at Panghat building RAG pipelines and semantic search; now building{' '}
                 <a href="https://mynextroom.ie" className="text-ink underline decoration-line underline-offset-[3px] hover:decoration-muted transition-colors">
                   MyNextRoom
                 </a>{' '}

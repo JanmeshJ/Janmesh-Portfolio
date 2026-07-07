@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowUpRight, Linkedin, Github, Mail, Youtube, Video } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { SITE, SOCIAL } from '../data/site';
+import { trackEvent } from '../utils/analytics';
 
 const ICONS = { LinkedIn: Linkedin, GitHub: Github, Email: Mail, YouTube: Youtube, TikTok: Video };
 const FORMSPREE_URL = process.env.REACT_APP_FORMSPREE_URL;
@@ -24,6 +25,8 @@ export default function Contact() {
       setStatus('error');
       return;
     }
+
+    trackEvent('contact_form_submit', { intent });
 
     if (!FORMSPREE_URL) {
       const subject = encodeURIComponent(`Portfolio contact: ${intent || 'General'}`);
@@ -67,7 +70,11 @@ export default function Contact() {
             <p className="text-sm text-muted leading-relaxed mb-8 max-w-sm -mt-6">
               Full-time roles, freelance, and research. Dublin-based, remote-friendly.
             </p>
-            <a href={`mailto:${SITE.email}`} className="link-underline text-base inline-flex items-center gap-2 mb-10">
+            <a
+          href={`mailto:${SITE.email}`}
+          className="link-underline text-base inline-flex items-center gap-2 mb-10"
+          onClick={() => trackEvent('contact_click', { method: 'email' })}
+        >
               {SITE.email}
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
@@ -83,6 +90,7 @@ export default function Contact() {
                     rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     aria-label={label}
                     className="p-2.5 border border-line text-muted hover:text-ink hover:border-muted transition-colors"
+                    onClick={() => trackEvent('contact_click', { method: label })}
                   >
                     <Icon size={16} />
                   </a>
